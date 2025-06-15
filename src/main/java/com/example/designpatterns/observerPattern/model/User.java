@@ -1,6 +1,6 @@
-package com.example.designpatterns.observer.model;
+package com.example.designpatterns.observerPattern.model;
 
-import com.example.designpatterns.observer.interfaces.Observer;
+import com.example.designpatterns.observerPattern.interfaces.Observer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

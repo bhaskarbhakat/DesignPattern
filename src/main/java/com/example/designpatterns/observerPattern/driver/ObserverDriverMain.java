@@ -1,7 +1,7 @@
-package com.example.designpatterns.observer.driver;
+package com.example.designpatterns.observerPattern.driver;
 
-import com.example.designpatterns.observer.model.User;
-import com.example.designpatterns.observer.model.YoutubeChannel;
+import com.example.designpatterns.observerPattern.model.User;
+import com.example.designpatterns.observerPattern.model.YoutubeChannel;
 
 public class ObserverDriverMain {
 
