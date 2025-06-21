@@ -5,17 +5,23 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChocolateScoop implements IceCream{
+public class OrangeCone implements IceCream {
 
     private IceCream iceCream;
 
     @Override
     public int getPrice() {
-        return iceCream.getPrice() + 80;
+        if (iceCream!=null) {
+            return iceCream.getPrice() + 40;
+        }
+        return 40;
     }
 
     @Override
     public String getDescription() {
-        return iceCream.getDescription() + ", Chocolate Scoop";
+        if (iceCream!=null) {
+            return iceCream.getDescription() + ", Orange Cone";
+        }
+        return "Orange Cone";
     }
 }

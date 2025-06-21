@@ -1,24 +1,20 @@
 package com.example.designpatterns.decoratorPattern.decorator;
 
-import com.example.designpatterns.decoratorPattern.base.IceCream;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
 
-@Getter
-@Setter
-public class CherryTopping extends IceCreamDecorator {
+@AllArgsConstructor
+public class CherryTopping implements IceCream {
 
-    public CherryTopping(IceCream iceCream) {
-        super(iceCream);
+    private IceCream iceCream;
+
+
+    @Override
+    public int getPrice() {
+        return iceCream.getPrice()+30;
     }
 
     @Override
     public String getDescription() {
-        return iceCream.getDescription() + "-> Cherry Topping";
-    }
-
-    @Override
-    public Double getCost() {
-        return iceCream.getCost() + 20.0;
+        return iceCream.getDescription() + ", Cherry Topping";
     }
 }
