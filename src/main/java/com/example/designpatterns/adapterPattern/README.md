@@ -1,41 +1,51 @@
-# 🔌 Adapter Design Pattern (Java)
+# 🔌 Adapter Design Pattern
 
-## ✅ Purpose
+## ✅ Category
+**Structural Design Pattern**
 
-The **Adapter Pattern** is used to **connect incompatible interfaces** — often when integrating with **3rd-party APIs**, SDKs, or legacy systems.
+---
 
-It lets your application **speak its own language**, while hiding the complexity of external systems behind a clean interface.
+## 🧠 Intent
+
+The Adapter Pattern allows two incompatible interfaces to work together.  
+It acts as a **bridge between your application and a 3rd-party API or legacy system**, so you don’t have to change existing code.
+
+---
+
+## 📌 When to Use
+
+- You are integrating **3rd-party SDKs** that don’t match your internal interface.
+- You want to **standardize multiple APIs** (like Stripe, Razorpay, Paypal) behind a single interface.
+- You need to make existing classes work with others without modifying their source code.
 
 ---
 
 ## 💡 Key Concepts
 
-1. **Used to integrate 3rd-party APIs or legacy code** into your system.
-2. Helps unify different APIs under a **common, generic interface** (e.g., `IPaymentGateway`).
-3. To implement:
-    - Create an interface that defines the methods your service will use. (e.g., `IPaymentGateway`, `NotificationSender`, etc.)
-    - Each adapter class implements that interface. (e.g., `PayPalAdapter`)
-4. Each adapter implements the interface and internally calls the 3rd-party API, converting its inputs and outputs to match what your application expects.
-5. Keeps your codebase **decoupled**, **testable**, and **easy to extend** with new integrations.
+1. **It’s a structural pattern** that focuses on class wiring and object composition.
+2. Allows your application to use external or legacy systems **without depending on their interface directly**.
+3. You define a **common interface** (e.g. `IPaymentGateway`) and create adapter classes for each external API.
+4. Each adapter class implements that interface and **internally calls the 3rd-party methods**, converting data as needed.
+5. Your business logic remains **clean, decoupled, and easily testable**.
 
 ---
 
-## 🧱 Structure
+## 🧱 Structure Example (Java)
 
 ```java
-// Step 1: Define common interface
+// Step 1: Define interface used by your application
 public interface IPaymentGateway {
     String processPayment();
     String showTransactionDetail(String uanNumber);
 }
 
-// Step 2: 3rd party SDK
+// Step 2: Existing third-party SDK (external, cannot be modified)
 public class PaypalSDK {
     public void payWithPaypal() { ... }
     public List<String> transactionDetailByUan(String uanNumber) { ... }
 }
 
-// Step 3: Adapter
+// Step 3: Adapter that bridges SDK and app interface
 @Component
 public class PaypalAdapter implements IPaymentGateway {
     private final PaypalSDK sdk;
@@ -46,7 +56,7 @@ public class PaypalAdapter implements IPaymentGateway {
 
     public String processPayment() {
         sdk.payWithPaypal();
-        return "Payment with Paypal done: Success";
+        return "Payment done via Paypal";
     }
 
     public String showTransactionDetail(String uanNumber) {
